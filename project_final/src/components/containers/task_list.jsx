@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LEVELS } from "../../models/levels.enum";
 import { Task } from "../../models/task.class";
 import TaskComponent from "../pure/forms/task";
@@ -10,6 +10,17 @@ const TaskListComponent = () => {
     false,
     LEVELS.NORMAL
   );
+
+  const [task, setTask] = useState(defaultTask);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+  setLoading(false)
+    return () => {
+      console.log("second");
+    }
+  }, [task])
+  
 
   return (
     <div>
