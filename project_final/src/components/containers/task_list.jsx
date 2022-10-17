@@ -17,7 +17,7 @@ const TaskListComponent = () => {
   useEffect(() => {
   setLoading(false)
     return () => {
-      console.log("second");
+      console.log(`unmount ${task}`);
     }
   }, [task])
   
