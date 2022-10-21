@@ -34,6 +34,29 @@ const TaskListComponent = () => {
     };
   }, [tasks]);
 
+  function completeTask(task) {
+    console.log(`completed ${task}`);
+    const index = tasks.indexOf(task);
+    const tempTask = [...tasks];
+    tempTask[index].completed = !tempTask[index].completed;
+    setTask(tempTask);
+  }
+
+  function deleteTask(task) {
+    console.log(`deleted ${task}`);
+    const index = tasks.indexOf(task);
+    const tempTask = [...tasks];
+    tempTask.slice(index, 1);
+    setTask(tempTask);
+  }
+
+  function addTask(task) {
+    console.log(`create ${task}`);
+    const tempTask = [...tasks];
+    tempTask.push(task);
+    setTask(tempTask);
+  }
+
   return (
     <div className="col-12">
       <div className="card">
@@ -56,13 +79,20 @@ const TaskListComponent = () => {
             </thead>
             <tbody>
               {tasks.map((task, index) => {
-                return <TaskComponent key={index} task={task}></TaskComponent>;
+                return (
+                  <TaskComponent
+                    key={index}
+                    task={task}
+                    complete={completeTask}
+                     remove={deleteTask}
+                  ></TaskComponent>
+                );
               })}
             </tbody>
           </table>
         </div>
-        <TaskForm></TaskForm>
       </div>
+        <TaskForm add={addTask}></TaskForm>
     </div>
   );
 };
