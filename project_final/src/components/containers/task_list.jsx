@@ -82,7 +82,7 @@ const TaskListComponent = () => {
       tasksTable = <Table></Table>
   }else{
       tasksTable = (
-      <div>
+      <div style={{color: 'black'}}>
           <h3> There are no tasks to show</h3>
           <h4>Please, create one</h4>
       </div>
@@ -101,7 +101,7 @@ const TaskListComponent = () => {
               <div className='card'>
                   {/* Card Header (title) */}
                   <div className='card-header p-3'>
-                      <h5>
+                      <h5 style={{color: 'black'}}>
                           Your Tasks:
                       </h5>
                   </div>
