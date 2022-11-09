@@ -24,7 +24,7 @@ const RegisterForm = (props) => {
       .required("Email is required"),
     //   role: Yup.string().oneOf([ROLES.USER, ROLES.ADMIN],'You must select a Role: User/Admin')
     // .required('Role is requiered'),
-      password: Yup.string()
+    password: Yup.string()
       .min(8, "password too short")
       .required("Password is required"),
     confirm: Yup.string()
@@ -50,63 +50,61 @@ const RegisterForm = (props) => {
           alert(JSON.stringify(values, null, 2));
         }}
       >
- {({ values,
-                    touched,
-                    errors,
-                    isSubmitting,
-                    handleChange,
-                    handleBlur })=>(
-                      <Form>
-                      <label htmlFor="username">Username</label>
-                            <Field id="username" type="text" name="username" placeholder="Your username" />
-                            {
-                                errors.username && touched.username && 
-                                (
-                                    <ErrorMessage name="username" component='div'></ErrorMessage>
-                                )
-                            }
-                      <label htmlFor="email">Email</label>
-                            <Field id="email" type="email" name="email" placeholder="example@email.com" />
-                            {
-                                errors.email && touched.email && 
-                                (
-                                    <ErrorMessage name="email" component='div'></ErrorMessage>
-                                )
-                            }
-                            <label htmlFor="password">Password</label>
-                            <Field
-                                id="password"
-                                name="password"
-                                placeholder="password"
-                                type='password'
-                            />
-                            {/* Password Errors */}
-                            {
-                                errors.password && touched.password && 
-                                (
-                                    <ErrorMessage name="password" component='div'></ErrorMessage>
-                                )
-                            } 
-                            <label htmlFor="confirm">Confirm</label>
-                            <Field
-                                id="confirm"
-                                name="confirm"
-                                placeholder="Confirm your passsword"
-                                type='password'
-                            />
-                            {/* Password Errors */}
-                            {
-                                errors.confirm && touched.confirm && 
-                                (
-                                    <ErrorMessage name="confirm" component='div'></ErrorMessage>
-                                )
-                            }
-                            <button type="submit">Register</button>
-                            {isSubmitting ? (<p>Sending your credentials ...</p>): null}
-
-                      </Form>
-                    )}
-
+        {({
+          values,
+          touched,
+          errors,
+          isSubmitting,
+          handleChange,
+          handleBlur,
+        }) => (
+          <Form>
+            <label htmlFor="username">Username</label>
+            <Field
+              id="username"
+              type="text"
+              name="username"
+              placeholder="Your username"
+            />
+            {errors.username && touched.username && (
+              <ErrorMessage name="username" component="div"></ErrorMessage>
+            )}
+            <label htmlFor="email">Email</label>
+            <Field
+              id="email"
+              type="email"
+              name="email"
+              placeholder="example@email.com"
+            />
+            {errors.email && touched.email && (
+              <ErrorMessage name="email" component="div"></ErrorMessage>
+            )}
+            <label htmlFor="password">Password</label>
+            <Field
+              id="password"
+              name="password"
+              placeholder="password"
+              type="password"
+            />
+            {/* Password Errors */}
+            {errors.password && touched.password && (
+              <ErrorMessage name="password" component="div"></ErrorMessage>
+            )}
+            <label htmlFor="confirm">Confirm</label>
+            <Field
+              id="confirm"
+              name="confirm"
+              placeholder="Confirm your passsword"
+              type="password"
+            />
+            {/* Password Errors */}
+            {errors.confirm && touched.confirm && (
+              <ErrorMessage name="confirm" component="div"></ErrorMessage>
+            )}
+            <button type="submit">Register</button>
+            {isSubmitting ? <p>Sending your credentials ...</p> : null}
+          </Form>
+        )}
       </Formik>
     </div>
   );

@@ -8,8 +8,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <TaskListComponent></TaskListComponent> */}
-        <RegisterForm></RegisterForm>
+        <TaskListComponent></TaskListComponent>
+        {/* <RegisterForm></RegisterForm> */}
       </header>
     </div>
   );
