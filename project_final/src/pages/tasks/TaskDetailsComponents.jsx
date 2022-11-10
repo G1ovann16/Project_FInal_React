@@ -1,12 +1,15 @@
-import React from 'react'
-import {useParams} from "react-router-dom";
+import React from "react";
+import { useParams } from "react-router-dom";
 
-const TaskDetailsComponents = () => {
-
-    const {id} = useParams()
+const TaskDetailsComponents = ({ task }) => {
+  const { id, name } = useParams();
   return (
-    <div>TaskDetailsComponents - {id}</div>
-  )
-}
+    <div>
+      <h1>TaskDetailsComponents - {id}</h1>
+      <h2>{name}</h2>
+      <h3>{task.description}</h3>
+    </div>
+  );
+};
 
-export default TaskDetailsComponents
+export default TaskDetailsComponents;
