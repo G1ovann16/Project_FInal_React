@@ -10,6 +10,7 @@ import LoginPage from "./pages/auth/LoginPage";
 import Loginform from "./components/pure/forms/loginForm";
 import { useEffect } from "react";
 import PropsPage from "./pages/home/PropsPage";
+import DashBoard from "./pages/dashboard/DashBoard";
 
 function AppRouting() {
   let logged = false;
@@ -34,12 +35,13 @@ function AppRouting() {
         </aside>
         <main>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<DashBoard />} />
             <Route path="/onlineState" element={<PropsPage />} />
             <Route
               path="/profile"
               element={logged ? <ProfilePage /> : <Loginform />}
             />
+            <Route path="/login"  element={<Loginform />} />
             <Route
               path="/login"
               element={logged ? <HomePage /> : <Loginform />}
