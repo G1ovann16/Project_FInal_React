@@ -15,10 +15,6 @@ import DashBoard from "./pages/dashboard/DashBoard";
 function AppRouting() {
   let logged = false;
 
-  let taskList = [
-    { id: 1, name: "task 1", description: "first task" },
-    { id: 2, name: "task 2", description: "second task" },
-  ];
   useEffect(() => {
     logged = localStorage.getItem("credentials");
   }, []);
@@ -44,12 +40,11 @@ function AppRouting() {
             <Route path="/login"  element={<Loginform />} />
             <Route
               path="/login"
-              element={logged ? <HomePage /> : <Loginform />}
+              element={logged ? <DashBoard /> : <Loginform />}
             />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/faqs" element={<AboutPage />} />
             <Route path="/task" element={<TaskListComponent />} />
-            <Route path="/task/:id"  element={<TaskDetailsComponents task={taskList} />} />
 
             <Route path="*" element={<ErrorPage />} />
           </Routes>
