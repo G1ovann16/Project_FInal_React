@@ -5,7 +5,7 @@ const ProfilePage = ({user}) => {
   const history = useNavigate()
   
   const navigate = ()=>{
-    history("/taskList")
+    history("/task")
   
   }
   const goBack = ()=>{

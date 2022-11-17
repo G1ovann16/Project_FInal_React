@@ -3,6 +3,7 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 
 const loginSchema = Yup.object().shape(
@@ -18,11 +19,14 @@ const loginSchema = Yup.object().shape(
 const Loginform = () => {
     
     const initialCredentials = {
-        email: '',
-        password: ''
+        email: localStorage.getItem("email"),
+        password: localStorage.getItem("password"),
     }
     const navigate = useNavigate()
 
+    const register = () =>{
+        navigate('/register')
+          }
     // const history = useHistory();
 
     return (
@@ -36,10 +40,16 @@ const Loginform = () => {
                 // ** onSubmit Event
                 onSubmit={async (values) => {
                     await new Promise((r) => setTimeout(r, 1000));
-                    alert(JSON.stringify(values, null, 2));
-                    // We save the data in the localstorage
-                    await localStorage.setItem('credentials', values);
-                    navigate('/profile');
+                    if(localStorage.getItem("email")=== null || localStorage.getItem("password")=== null){
+                        await alert('You should register before')
+                        navigate('/register');
+                    }else if(localStorage.getItem("email") === values.email && localStorage.getItem("password") === values.password){
+                        // alert(JSON.stringify(values, null, 2));
+                        // await localStorage.setItem('credentials', values);
+                        localStorage.setItem('log', true)
+                        navigate('/');}else{
+                            await alert('Login wrong, Try again or register pls')
+                    }
                 }}
             >
                 {/* We obtain props from Formik */}
@@ -81,6 +91,8 @@ const Loginform = () => {
                         </Form>
                 )}
             </Formik>
+               
+        <Button variant="contained" onClick={register}>Register</Button>
         </div>
     );
 }

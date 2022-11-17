@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { User } from "../../../models/users.class";
 import { Formik, Field, Form, ErrorMessage, yupToFormErrors } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from 'react-router-dom';
 import { ROLES } from "../../../models/roles.enum";
 
 const RegisterForm = (props) => {
   let user = new User();
-
+  const navigate = useNavigate()
   const initialValues = {
     username: "",
     email: "",
@@ -47,7 +48,9 @@ const RegisterForm = (props) => {
         validationSchema={registerSchema}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 1000));
-          alert(JSON.stringify(values, null, 2));
+          await localStorage.setItem('password', values.password);
+            await localStorage.setItem('email', values.email);
+            navigate(('/login'))
         }}
       >
         {({
@@ -102,7 +105,9 @@ const RegisterForm = (props) => {
               <ErrorMessage name="confirm" component="div"></ErrorMessage>
             )}
             <button type="submit">Register</button>
-            {isSubmitting ? <p>Sending your credentials ...</p> : null}
+            {isSubmitting ? 
+            <p>Sending your credentials ...</p> 
+            : null}
           </Form>
         )}
       </Formik>
